@@ -23,7 +23,17 @@
 
 </body>
 	<script>
-	
+  const urlParams = new URLSearchParams(window.location.search);  // Corrected object usage 
+   const itemId = urlParams.get("id"); 
+  
+   // Fetch item details if an ID is present: 
+   if (itemId) { 
+     fetch(`http://157.230.214.215/api/Lex_Star_Wars/${itemId}`)  // Use template literal for dynamic URL 
+       .then(response => { 
+         if (!response.ok) { 
+           throw new Error(`HTTP error! status: ${response.status}`); 
+         } 
+         return response.json();
 	
 	</script>
 
