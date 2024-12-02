@@ -61,36 +61,7 @@ function light_lightsaber(lit){
 	container.appendChild(newHeading);
 	
 	}
-	 const urlParams = new URLSearchParams(window.location.search);  // Corrected object usage
-    const itemId = urlParams.get("id");
-
-    // Fetch item details if an ID is present:
-    if (itemId) {
-      fetch(`http://157.230.214.215/api/Lex_Star_Wars/${itemId}`)  // Use template literal for dynamic URL
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(itemDetails => {
-          const detailsContainer = document.getElementById("item-details");
-
-          // Loop through item details and create paragraphs:
-          for (const key in itemDetails) {
-            if (key !== "id") {  // Skip the "id" property
-              const paragraph = document.createElement("p");
-              paragraph.innerText = `${key}: ${itemDetails[key]}`;
-              detailsContainer.appendChild(paragraph);
-            }
-          }
-        })
-        .catch(error => {
-          console.error("Error:", error);
-        });
-    }
-	
-	
+	 
 		/* oLD cODE
 	  fetch("http://157.230.214.215/api/Lex_Star_Wars")
       .then(response => {
