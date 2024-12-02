@@ -34,6 +34,23 @@
            throw new Error(`HTTP error! status: ${response.status}`); 
          } 
          return response.json();
+	         }) 
+       .then(itemDetails => { 
+         const detailsContainer = document.getElementById("item-details"); 
+  
+         // Loop through item details and create paragraphs: 
+         for (const key in itemDetails) { 
+           if (key !== "id") {  // Skip the "id" property 
+             const paragraph = document.createElement("p"); 
+             paragraph.innerText = `${key}: ${itemDetails[key]}`; 
+             detailsContainer.appendChild(paragraph); 
+           } 
+         } 
+       }) 
+       .catch(error => { 
+         console.error("Error:", error); 
+       }); 
+   } 
 	
 	</script>
 
