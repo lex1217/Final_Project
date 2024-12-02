@@ -1,0 +1,150 @@
+<html> 
+<head>
+	<title>Final Project Review</title>
+		<h1>Final Project</h1>
+		<h2>duh duh duh DUN DA DUN, DUN DA DUN</h2>
+		
+	<style>
+		body {
+			background-color: #f5e4e0;
+		
+		}
+	</style>
+	
+</head>
+
+<body>
+	<img src ="https://cdn.europosters.eu/image/hp/75998.jpg">
+	<a href="detail.html">Click to go to detail page</a>
+	<button id= "add-heading"> Click me to add heading</button>
+	<div id= "container"></div>
+
+	
+</body>
+<script>
+	var my_name ="alexis";
+	var my_age = 21;
+	var is_full = false;
+	var movies = ["Empire Strikes Back", "Return of the Jedi", "A New Hope"];
+	console.log(movies[2]);
+	var the_darthvader = {
+		producer:"George Lucas",
+		actors: [{
+	name:"Harrison",
+	film_credits:20,
+	is_hirable: false
+	
+	},
+	]
+	
+	};
+console.log(the_darthvader.director);
+function light_lightsaber(lit){
+	console.log("LIGHTSABER IS NOW.....");
+	console.log(lit);
+}
+
+	var btn = document.getElementById("add-heading");
+	btn.addEventListener("click", createHeading);
+	
+	function createHeading(){
+		console.log("getting here");
+	
+	var newHeading = document.createElement("h2");
+	// <h1></h1>
+	newHeading.innerText = "This is a new heading";
+	// <h1>This is a new heading
+	
+	var container = document.getElementById("container");
+	container.appendChild(newHeading);
+	
+	}
+	 const urlParams = new URLSearchParams(window.location.search);  // Corrected object usage
+    const itemId = urlParams.get("id");
+
+    // Fetch item details if an ID is present:
+    if (itemId) {
+      fetch(`http://157.230.214.215/api/Lex_Star_Wars/${itemId}`)  // Use template literal for dynamic URL
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(itemDetails => {
+          const detailsContainer = document.getElementById("item-details");
+
+          // Loop through item details and create paragraphs:
+          for (const key in itemDetails) {
+            if (key !== "id") {  // Skip the "id" property
+              const paragraph = document.createElement("p");
+              paragraph.innerText = `${key}: ${itemDetails[key]}`;
+              detailsContainer.appendChild(paragraph);
+            }
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
+	
+	
+		/* oLD cODE
+	  fetch("http://157.230.214.215/api/Lex_Star_Wars")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(dataFromApi => {
+        var itemsList = document.getElementById("items-list");
+
+        // Loop through the data array
+        for (var i = 0; i < dataFromApi.length; i++) {
+          var item = dataFromApi[i];  // Access each item in the array
+
+          // Create a list item for each item
+          var listItem = document.createElement("li");
+
+          // Assuming "name" or "title" property exists in each item:
+          var linkText = item.name || item.title;   // Use name if available, else title
+
+          // Create a link element for each item
+          var itemLink = document.createElement("a");
+          itemLink.href = "detail.html?id=" + item.id;  // Construct link with id parameter
+          itemLink.innerText = linkText;
+
+          // Add item link to the list item
+          listItem.appendChild(itemLink);
+
+          // Add the list item to the unordered list
+          itemsList.appendChild(listItem);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+     
+		*/
+	
+	/*
+	fetch("http://157.230.214.215/api/Lex_Star_Wars").then(response => response.json()).then(data_from_api => {
+	console.log(data_from_api);
+	})
+	var url_data = new URLSearchParams(windows.location.search);
+	console.log(url_data.get("Lex_Star_Wars_id"));
+	
+	var Lex_Star_Wars_id = url_data.get("Lex_Star_Wars_id");
+	
+	fetch("http://157.230.214.215/api/Lex_Star_Wars") + Lex_Star_Wars_id)).then(Response => response.json()).then(data_from_api => {
+		console.log(data_from_api);
+		})
+		
+	*/
+</script>
+
+
+
+
+</html>
