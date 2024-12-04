@@ -69,9 +69,35 @@ function light_lightsaber(lit){
         }
         return response.json();
       })
-      .then(dataFromApi => {
-        var itemsList = document.getElementById("items-list");
+      .then(dataFromApi => {    
+	var itemsList = document.getElementById("items-list");
+//3rd attempt
+	// Loop through the data array
+    for (let i = 0; i < dataFromApi.length; i++) {
+      let item = dataFromApi[i]; // Access each item in the array
 
+      // Create a list item for each item
+      let listItem = document.createElement("li");
+
+      // Assuming "name" or "title" property exists in each item:
+      let linkText = item.name || item.title;  // Use name if available, else title
+
+      // Create a link element for each item
+      var itemLink = document.createElement("a"); // Still using var here for consistency
+      itemLink.href = "detail.html?id=" + item.id;  // Construct link with id parameter
+      itemLink.innerText = linkText;
+
+      // Add item link to the list item
+      listItem.appendChild(itemLink);
+
+      // Add the list item to the unordered list
+      itemsList.appendChild(listItem);
+    }
+  })
+
+	      
+//2nd Attempt
+	 /* 
         // Loop through the data array
         for (var i = 0; i < dataFromApi.length; i++) {
           var item = dataFromApi[i];  // Access each item in the array
@@ -94,13 +120,14 @@ function light_lightsaber(lit){
           itemsList.appendChild(listItem);
         }
       })
+      */
       .catch(error => {
         console.error("Error:", error);
       });
      
 		
 	
-	/*
+/* first attempt
 	fetch("http://157.230.214.215/api/Lex_Star_Wars").then(response => response.json()).then(data_from_api => {
 	console.log(data_from_api);
 	})
